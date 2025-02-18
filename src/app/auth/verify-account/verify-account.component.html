@@ -1,0 +1,48 @@
+<div class="container">
+  @if (isLoading()) {
+    <ngx-spinner
+      bdColor = "rgba(0,0,0,0.3)"
+      size = "medium"
+      color = "#eb664e"
+      type = "ball-spin-clockwise-fade"
+      [fullScreen] = "true"
+    >
+      <p class="loading"> Loading... </p>
+    </ngx-spinner>
+  }
+  <div class="image-bg">
+    <img src="verify-account.jpeg" alt="verify-account-image">
+  </div>
+  <div class="form-container">
+    <img src="logo.webp" class="logo" alt="logo">
+
+    <form class="form-group" [formGroup]="verifyAccountForm" (ngSubmit)="onVerifyAccount()">
+      <p>Verify your account</p>
+      <h2>Please enter the 2FA code <br> sent to your email</h2>
+      <div class="form-control">
+        <label for="code">Code <span>*</span></label>
+        <input
+          type="text"
+          placeholder="Enter your code"
+          formControlName="code"
+          required
+          id="code"
+        >
+        <div
+          class="error"
+          *ngIf="getControl('code')?.invalid && (getControl('code')?.touched || getControl('code')?.dirty)"
+        >
+          <div *ngIf="getControl('code')?.errors?.['required']">Two factor auth code is required</div>
+          <div *ngIf="getControl('code')?.errors?.['invalidCode']">Please enter a valid 6-digit code</div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        [disabled]="verifyAccountForm.invalid || isLoading()"
+        class="verify-btn"
+      >
+        Verify Account
+      </button>
+    </form>
+  </div>
+</div>
