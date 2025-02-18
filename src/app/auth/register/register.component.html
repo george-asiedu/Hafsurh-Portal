@@ -1,0 +1,95 @@
+<div class="container">
+  @if (isLoading()) {
+    <ngx-spinner
+      bdColor = "rgba(0,0,0,0.3)"
+      size = "medium"
+      color = "#eb664e"
+      type = "ball-spin-clockwise-fade"
+      [fullScreen] = "true"
+    >
+      <p class="loading"> Loading... </p>
+    </ngx-spinner>
+  }
+  <div class="image-bg">
+    <img src="register.jpeg" alt="register-image">
+  </div>
+  <div class="login-container">
+    <div class="header">
+      <img src="logo.webp" class="logo" alt="logo">
+      <button routerLink="" class="header-btn">Sign in</button>
+    </div>
+
+    <form class="form-group" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <h2>Create an account</h2>
+      <div class="form-control">
+        <label for="name">Name <span>*</span></label>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          formControlName="name"
+          id="name"
+          required
+        >
+        <div
+          class="error"
+          *ngIf="getControl('name')?.invalid && (getControl('name')?.touched || getControl('name')?.dirty)"
+        >
+          <div *ngIf="getControl('name')?.errors?.['required']">name is required</div>
+          <div *ngIf="getControl('name')?.errors?.['invalidName']">must contain only alphabets</div>
+        </div>
+      </div>
+      <div class="form-control">
+        <label for="email">Email <span>*</span></label>
+        <input
+          type="email"
+          placeholder="Enter your email"
+          formControlName="email"
+          required
+          id="email"
+        >
+        <div
+          class="error"
+          *ngIf="getControl('email')?.invalid && (getControl('email')?.touched || getControl('email')?.dirty)"
+        >
+          <div *ngIf="getControl('email')?.errors?.['required']">email is required</div>
+          <div *ngIf="getControl('email')?.errors?.['invalidDomain']">Email domain is not allowed</div>
+          <div *ngIf="getControl('email')?.errors?.['invalidEmail']">Invalid email format</div>
+        </div>
+      </div>
+      <div class="form-control">
+        <label for="password">Password <span>*</span></label>
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          placeholder="Enter your password"
+          formControlName="password"
+          required
+          id="password"
+        >
+        <div
+          class="eye-icon"
+          (click)="toggleShowPassword()"
+          (keyup.enter)="toggleShowPassword()"
+          tabindex="0"
+        >
+          <img
+            src="{{showPassword ? 'eye-open.svg' : 'eye-close.svg'}}"
+            alt="eye-icon"
+          >
+        </div>
+        <div
+          class="error"
+          *ngIf="getControl('password')?.invalid && (getControl('password')?.touched || getControl('password')?.dirty)"
+        >
+          <div *ngIf="getControl('password')?.errors?.['required']">password is required</div>
+          <div *ngIf="getControl('password')?.errors?.['invalidPassword']">Password is not strong enough</div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        [disabled]="registerForm.invalid || isLoading()"
+      >
+        Register
+      </button>
+    </form>
+  </div>
+</div>
