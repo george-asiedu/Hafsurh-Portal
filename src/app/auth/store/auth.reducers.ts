@@ -1,6 +1,7 @@
 import {AuthState} from './auth.state';
 import {createFeature, createReducer, on} from '@ngrx/store';
 import { authActions } from './auth.actions';
+import {appActions} from '../../app-store/app.actions';
 
 export const initialState: AuthState = {
   isLoading: false,
@@ -53,6 +54,10 @@ export const authFeature = createFeature({
       ...state,
       isLoading: false,
       error
+    })),
+    on(appActions.getStoreData, (state, {data}) => ({
+      ...state,
+      data
     })),
     on(authActions.logout, (state) => ({
       ...state,

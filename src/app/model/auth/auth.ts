@@ -58,5 +58,5 @@ export interface SuccessResponse {
 
 export enum Roles {
   Admin = 'Admin',
-  Employee = 'Student',
+  Student = 'Student',
 }

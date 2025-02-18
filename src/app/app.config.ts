@@ -15,7 +15,6 @@ import * as ToastEffects from './app-store/toasts.effects';
 import * as RouteEffects from './app-store/routes.effects';
 import * as SpinnerEffects from './app-store/spinner.effects';
 import {authFeature} from './auth/store/auth.reducers';
-import { appStoreFeature } from './app-store/app.reducers';
 import {provideSpinnerConfig} from 'ngx-spinner';
 import {authInterceptor} from './interceptor/auth/auth.interceptor';
 import {refreshTokenInterceptor} from './interceptor/refresh_token/refresh-token.interceptor';
@@ -30,7 +29,6 @@ export const appConfig: ApplicationConfig = {
     provideSpinnerConfig({ type: 'ball-spin-clockwise-fade'}),
     provideStore(),
     provideState(authFeature),
-    provideState(appStoreFeature),
     provideEffects(AuthEffects, RouteEffects, ToastEffects, SpinnerEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
   ]
