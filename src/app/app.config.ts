@@ -17,13 +17,15 @@ import * as SpinnerEffects from './app-store/spinner.effects';
 import {authFeature} from './auth/store/auth.reducers';
 import { appStoreFeature } from './app-store/app.reducers';
 import {provideSpinnerConfig} from 'ngx-spinner';
+import {authInterceptor} from './interceptor/auth/auth.interceptor';
+import {refreshTokenInterceptor} from './interceptor/refresh_token/refresh-token.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideHttpClient(withInterceptors([])),
+    provideHttpClient(withInterceptors([authInterceptor, refreshTokenInterceptor])),
     importProvidersFrom(NgToastModule),
     provideSpinnerConfig({ type: 'ball-spin-clockwise-fade'}),
     provideStore(),
