@@ -1,0 +1,32 @@
+<div class="navbar-container">
+  <div class="label">
+    <img src="logo.webp" class="logo" alt="logo_image">
+    <h4>Lasued Student Portal</h4>
+  </div>
+  <div class="row">
+    <h5 class="flex">
+      Hi <strong>{{name}}</strong>
+      <img src="happy_emoji.svg" alt="happy_emoji_image">
+    </h5>
+    <img
+      src="chevron_down.svg"
+      class="chevron"
+      alt="chevron_down_image"
+      (click)="toggleDropdown()"
+    >
+  </div>
+  <div class="dropdown" *ngIf="isDropdownOpen">
+    <div
+      routerLink="/profile"
+      class="row"
+      (click)="profile()"
+    >
+      <img src="profile.svg" alt="profile_image">
+      <p>Profile</p>
+    </div>
+    <div (click)="logout()" class="row">
+      <img src="logout.svg" alt="logout_image">
+      <p>Log out</p>
+    </div>
+  </div>
+</div>
