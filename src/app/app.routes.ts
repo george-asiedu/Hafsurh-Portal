@@ -8,7 +8,13 @@ export const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'dashboard',
+    path: 'admin-dashboard',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    canActivate: [authGuard],
+    data: {roles: [Roles.Admin]}
+  },
+  {
+    path: 'student-dashboard',
     loadChildren: () => import('./student/student.module').then(m => m.StudentModule),
     canActivate: [authGuard],
     data: {roles: [Roles.Student]}
