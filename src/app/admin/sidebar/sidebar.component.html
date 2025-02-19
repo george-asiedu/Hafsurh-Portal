@@ -1,0 +1,37 @@
+<div class="sidebar-container" [class.collapsed]="isSidebarCollapsed">
+  <div class="logo">
+    <img src="logo.webp" alt="logo_image">
+  </div>
+  <div class="sidebar-nav">
+    <div
+      class="nav-link"
+      routerLink="/admin-dashboard"
+      routerLinkActive="active-nav"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <img src="dashboard.svg" alt="dashboard_img">
+      <p>Dashboard</p>
+    </div>
+    <div
+      class="nav-link"
+      routerLink="/admin-dashboard/users"
+      routerLinkActive="active-nav"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <img src="profile.svg" alt="profile_img">
+      <p>Users</p>
+    </div>
+    <div
+      class="nav-link"
+      routerLink="/admin-dashboard/courses"
+      routerLinkActive="active-nav"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <img src="course.png" alt="course_img">
+      <p>Courses</p>
+    </div>
+  </div>
+  <span (click)="toggleSidebar()" class="chevron_img">
+    <img src="chevron-left.svg" alt="chevron-left_img">
+  </span>
+</div>
