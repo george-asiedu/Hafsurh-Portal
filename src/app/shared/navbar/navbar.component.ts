@@ -13,6 +13,7 @@ import {selectUser} from '../../auth/store/auth.selectors';
 export class NavbarComponent implements OnInit {
   public isDropdownOpen: boolean = false;
   public name: string = '';
+  public role: string = '';
 
   public constructor(private store: Store<AuthState>) {}
 
@@ -21,6 +22,7 @@ export class NavbarComponent implements OnInit {
     const user = currentUser();
     if (user) {
       this.name = user.name;
+      this.role = user.role;
     }
   }
 
