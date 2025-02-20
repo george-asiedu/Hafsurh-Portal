@@ -27,15 +27,15 @@ export class NavbarComponent implements OnInit {
   }
 
   public toggleDropdown(): void {
-    this.isDropdownOpen = !this.isDropdownOpen
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 
   public profile(): void {
-    this.isDropdownOpen = false
+    this.isDropdownOpen = false;
   }
 
   public logout(): void {
-    authActions.logout();
-    this.isDropdownOpen = false
+    this.store.dispatch(authActions.logout());
+    this.isDropdownOpen = false;
   }
 }
