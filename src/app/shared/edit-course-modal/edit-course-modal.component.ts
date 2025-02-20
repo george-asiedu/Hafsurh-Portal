@@ -44,7 +44,7 @@ export class EditCourseModalComponent implements OnChanges {
   }
 
   public onCancel() {
-    this.cancel.emit()
+    this.cancel.emit();
   }
 
   public onSubmit() {
@@ -63,7 +63,7 @@ export class EditCourseModalComponent implements OnChanges {
       course_name: course.course_name,
       course_code: course.course_code,
       credit_units: course.credit_units
-    })
+    });
   }
 
   public getControl(value: string) {

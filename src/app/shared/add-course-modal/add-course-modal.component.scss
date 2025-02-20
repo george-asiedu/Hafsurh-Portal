@@ -8,6 +8,11 @@
   opacity: 0.6;
   inset: 0;
 
+  .loading {
+    color: var(--red);
+    font-size: 1.25rem;
+  }
+
   .course_modal {
     background-color: var(--white);
     padding: 1.5rem;
