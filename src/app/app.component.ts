@@ -13,7 +13,7 @@ import {appStateSelector} from './app-store/app.selectors';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  public toastPosition = ToasterPosition.TOP_RIGHT;
+  public toastPosition = ToasterPosition.BOTTOM_RIGHT;
   private store = inject(Store);
   private state = this.store.selectSignal(appStateSelector);
   private key: string = constants.storageKey;
