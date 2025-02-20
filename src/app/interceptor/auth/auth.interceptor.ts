@@ -5,10 +5,10 @@ import { Store } from '@ngrx/store';
 import { selectAccessToken } from '../../auth/store/auth.selectors';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const appUrl: string = environment.productionEnvironment;
+  const appUrl = environment.productionEnvironment;
   const store = inject(Store);
   const token = store.selectSignal(selectAccessToken);
-  const bearerUrls = [`${appUrl}auth/refresh-token`, `${appUrl}users/`, `${appUrl}courses/`];
+  const bearerUrls = [`${appUrl}users/`, `${appUrl}courses/`, `${appUrl}auth/refresh-token`];
 
   if (bearerUrls.some(url => req.url.startsWith(url))) {
     const authReq = req.clone({
