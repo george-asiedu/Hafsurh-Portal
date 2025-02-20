@@ -7,6 +7,7 @@ import {filter, switchMap, withLatestFrom} from 'rxjs';
 import {Store} from '@ngrx/store';
 import {AuthState} from './auth.state';
 import {selectRegisterToken} from './auth.selectors';
+import {HttpErrorResponse} from '@angular/common/http';
 
 export const registerAccountEffect = createEffect(
   (actions$ = inject(Actions), authService = inject(AuthService)) => {
@@ -16,7 +17,7 @@ export const registerAccountEffect = createEffect(
         authService.register(user).pipe(
           mapResponse({
             next: (response) => authActions.registerAccountSuccess({data: response}),
-            error: (error: string) => authActions.authenticationFailure({error})
+            error: (error: HttpErrorResponse) => authActions.authenticationFailure({error})
           })
         )
       )
@@ -32,7 +33,7 @@ export const signinEffect = createEffect(
         authService.signin(user).pipe(
           mapResponse({
             next: (response) => authActions.signinSuccess({data: response}),
-            error: (error: string) => authActions.authenticationFailure({error})
+            error: (error: HttpErrorResponse) => authActions.authenticationFailure({error})
           })
         )
       )
@@ -54,7 +55,7 @@ export const verifyAccountEffect = createEffect(
         authService.verifyAccount(code, token as string).pipe(
           mapResponse({
             next: (response) => authActions.verifyAccountSuccess({message: response}),
-            error: (error: string) => authActions.authenticationFailure({error})
+            error: (error: HttpErrorResponse) => authActions.authenticationFailure({error})
           })
         )
       )
