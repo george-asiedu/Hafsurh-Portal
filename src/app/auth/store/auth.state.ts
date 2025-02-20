@@ -1,4 +1,5 @@
 import {RegisterResponse, SigninResponse, SuccessResponse} from '../../model/auth/auth';
+import {HttpErrorResponse} from '@angular/common/http';
 
 export interface AuthState {
   isLoading: boolean;
@@ -6,5 +7,5 @@ export interface AuthState {
     { type: 'signin'; response: SigninResponse } |
     { type: 'refreshToken'; response: SigninResponse } | null;
   message: SuccessResponse | null;
-  error: string | null;
+  error: HttpErrorResponse | null;
 }
