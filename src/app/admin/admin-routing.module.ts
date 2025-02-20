@@ -1,9 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from './home/home.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {UsersComponent} from './users/users.component';
+import {CoursesComponent} from './courses/courses.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent, title: 'Lasued Portal | Admin Dashboard'},
+  {
+    path: '',
+    component: HomeComponent,
+    title: 'Lasued Admin Portal | Admin Dashboard',
+    children: [
+      {path: '', component: DashboardComponent},
+      {path: 'users', component: UsersComponent},
+      {path: 'courses', component: CoursesComponent}
+    ]
+  },
 ];
 
 @NgModule({
