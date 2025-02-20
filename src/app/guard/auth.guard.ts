@@ -5,7 +5,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { constants } from '../utils/constants';
 import { AuthState } from '../auth/store/auth.state';
 import { authActions } from '../auth/store/auth.actions';
-import { selectAccessToken, selectUser } from '../auth/store/auth.selectors';
+import {selectAccessToken, selectUser} from '../auth/store/auth.selectors';
 import { Roles } from '../model/auth/auth';
 
 const getDependencies = () => {
