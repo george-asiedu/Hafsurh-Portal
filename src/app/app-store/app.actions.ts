@@ -1,10 +1,10 @@
 import {createActionGroup, props} from '@ngrx/store';
-import {AuthState} from '../auth/store/auth.state';
+import {AppStore} from '../model/auth/auth';
 
 
 export const appActions = createActionGroup({
   source: 'AppStore',
   events: {
-    'Get Store Data': props<AuthState>()
+    'Get Store Data': props<AppStore>()
   }
 });
