@@ -1,3 +1,6 @@
+import { AdminState } from '../../admin/store/admin.state';
+import {AuthState} from '../../auth/store/auth.state';
+
 export interface Register {
   name: string;
   email: string;
@@ -59,4 +62,9 @@ export interface SuccessResponse {
 export enum Roles {
   Admin = 'Admin',
   Student = 'Student',
+}
+
+export interface AppStore {
+  auth: AuthState;
+  admin: AdminState;
 }
