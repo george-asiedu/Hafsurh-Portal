@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   public refreshToken() {
-  const token = this.store.selectSignal(selectRefreshToken);
+    const token = this.store.selectSignal(selectRefreshToken);
     return this.http.post<SigninResponse>(
       `${this.appUrl}auth/refresh-token`,
       { refreshToken: token() }
