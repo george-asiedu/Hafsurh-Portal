@@ -1,0 +1,34 @@
+<div class="courses-container">
+  <app-navbar />
+  @if (isLoading()) {
+    <ngx-spinner
+      bdColor = "rgba(0,0,0,0.3)"
+      size = "medium"
+      color = "#eb664e"
+      type = "ball-spin-clockwise-fade"
+      [fullScreen] = "true"
+    >
+      <p class="loading"> Loading... </p>
+    </ngx-spinner>
+  }
+  <div class="row">
+    <h4>Total Courses: <span>{{count()}}</span></h4>
+    <button
+      type="button"
+      class="course_btn"
+      (click)="showModal()"
+    >
+      Add Course
+    </button>
+  </div>
+
+  <div>
+    <app-courses-table />
+  </div>
+
+  <app-add-course-modal
+    *ngIf="isModalVisible"
+    (cancel)="cancelModal()"
+    (submit)="confirmData()"
+  />
+</div>

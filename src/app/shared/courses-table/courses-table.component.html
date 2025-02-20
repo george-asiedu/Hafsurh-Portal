@@ -1,0 +1,67 @@
+<div class="course-table-container">
+  @if (isLoading()) {
+    <ngx-spinner
+      bdColor = "rgba(0,0,0,0.3)"
+      size = "medium"
+      color = "#eb664e"
+      type = "ball-spin-clockwise-fade"
+      [fullScreen] = "false"
+    >
+      <p class="loading"> Loading... </p>
+    </ngx-spinner>
+  }
+
+  <table class="table" *ngIf="!isLoading()">
+    <thead class="head">
+      <tr>
+        <th class="title">Course ID</th>
+        <th class="title">Course Name</th>
+        <th class="title">Course Code</th>
+        <th class="title">Credit Units</th>
+        <th class="title">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="body" *ngIf="(coursesData() || []).length > 0">
+      <tr
+        class="body_row"
+        *ngFor="let course of coursesData(); let i = index"
+      >
+        <td class="data">{{ course.id }}</td>
+        <td class="data">{{ course.course_name }}</td>
+        <td class="data">{{ course.course_code }}</td>
+        <td class="data">{{ course.credit_units }}</td>
+        <td class="action">
+          <img
+            src="action.svg"
+            class="action_img"
+            alt="action-icon"
+            (click)="toggleDropdown(i)"
+          />
+          <div *ngIf="isDropdownVisible[i]" class="edit">
+            <button
+              (click)="OpenEditCourse(course)"
+              class="edit_btn"
+            >
+              <img src="edit.svg" alt="edit">
+              <p class="edit-paragraph">Edit course</p>
+            </button>
+            <button
+              (click)="deleteCourse(course.id)"
+              class="edit_btn"
+            >
+              <img src="trash.svg" alt="trash">
+              <p class="edit-paragraph">Delete course</p>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <app-edit-course-modal
+    *ngIf="isEditModalOpen"
+    [course]="selectedCourse"
+    (cancel)="closeEditCourseModal()"
+    (submit)="onEditCourseSubmit()"
+  />
+</div>

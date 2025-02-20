@@ -1,0 +1,86 @@
+<div class="course_container">
+  @if (isLoading()) {
+    <ngx-spinner
+      bdColor = "rgba(0,0,0,0.3)"
+      size = "medium"
+      color = "#eb664e"
+      type = "ball-spin-clockwise-fade"
+      [fullScreen] = "true"
+    >
+      <p class="loading"> Loading... </p>
+    </ngx-spinner>
+  }
+  <div class="course_modal">
+    <div class="heading">
+      <h3>Add Course</h3>
+      <button (click)="onCancel()" class="cancel">&times;</button>
+    </div>
+    <form class="form_container" [formGroup]="addCourseForm" (ngSubmit)="onSubmit()">
+      <div class="input_control">
+        <label for="course_name">Course Name</label>
+        <input
+          type="text"
+          required
+          id="course_name"
+          formControlName="course_name"
+          placeholder="Enter course name"
+        >
+        <div
+          class="error"
+          *ngIf="getControl('course_name')?.invalid && (getControl('course_name')?.touched || getControl('course_name')?.dirty)"
+        >
+          <div *ngIf="getControl('course_name')?.errors?.['required']">Course name is required</div>
+          <div *ngIf="getControl('course_name')?.invalid && getControl('course_name')?.touched">must only contain alphabets</div>
+        </div>
+      </div>
+      <div class="input_control">
+        <label for="course_code">Course Code</label>
+        <input
+          type="text"
+          required
+          id="course_code"
+          formControlName="course_code"
+          placeholder="Enter course code"
+        >
+        <div
+          class="error"
+          *ngIf="getControl('course_code')?.invalid && (getControl('course_code')?.touched || getControl('course_code')?.dirty)"
+        >
+          <div *ngIf="getControl('course_code')?.errors?.['required']">Course code is required</div>
+        </div>
+      </div>
+      <div class="input_control">
+        <label for="credit_units">Credit unit</label>
+        <input
+          type="number"
+          required
+          id="credit_units"
+          formControlName="credit_units"
+          placeholder="Enter credit unit"
+        >
+        <div
+          class="error"
+          *ngIf="getControl('credit_units')?.invalid && (getControl('credit_units')?.touched || getControl('credit_units')?.dirty)"
+        >
+          <div *ngIf="getControl('credit_units')?.errors?.['required']">Credit unit is required</div>
+        </div>
+      </div>
+      <div class="buttons">
+        <button
+          class="cancel_btn"
+          (click)="onCancel()"
+          type="button"
+        >
+          Cancel
+        </button>
+        <button
+          class="submit_btn"
+          type="submit"
+          [disabled]="addCourseForm.invalid || isLoading()"
+        >
+          Add course
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
