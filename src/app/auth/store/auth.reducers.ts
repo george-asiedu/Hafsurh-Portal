@@ -55,13 +55,13 @@ export const authFeature = createFeature({
       isLoading: false,
       error
     })),
-    on(appActions.getStoreData, (state, {data}) => ({
-      ...state,
-      data
-    })),
     on(authActions.logout, (state) => ({
       ...state,
       data: null,
+    })),
+    on(appActions.getStoreData, (state, {auth}) => ({
+      ...state,
+      ...auth
     }))
   )
 });
