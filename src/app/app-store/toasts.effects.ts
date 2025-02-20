@@ -4,15 +4,16 @@ import { tap } from 'rxjs';
 import {inject} from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
 import { authActions } from '../auth/store/auth.actions';
+import {adminActions} from '../admin/store/admin.actions';
 
-export const signupToastEffects = createEffect(
+export const registerToastEffects = createEffect(
   (actions$ = inject(Actions), toast = inject(NgToastService)) => {
     return actions$.pipe(
       ofType(authActions.registerAccountSuccess),
       tap((message) =>
         toast.success(
-          message.data.message,
           constants.signupSuccess,
+          message.data.message,
           constants.toastDuration
         )
       )
@@ -26,8 +27,8 @@ export const loginToastEffects = createEffect(
       ofType(authActions.signinSuccess),
       tap((message) =>
         toast.success(
-          message.data.message,
           constants.signinSuccess,
+          message.data.message,
           constants.toastDuration
         )
       )
@@ -35,14 +36,18 @@ export const loginToastEffects = createEffect(
   }, { functional: true, dispatch: false }
 );
 
-export const authFailureToastEffects = createEffect(
+export const appFailureToastEffects = createEffect(
   (actions$ = inject(Actions), toast = inject(NgToastService)) => {
     return actions$.pipe(
-      ofType(authActions.authenticationFailure),
+      ofType(
+        authActions.authenticationFailure,
+        adminActions.userFailure,
+        adminActions.courseFailure
+      ),
       tap((error) =>
         toast.danger(
-          error.error,
           constants.error,
+          error.error.message,
           constants.toastDuration
         )
       )
@@ -50,14 +55,56 @@ export const authFailureToastEffects = createEffect(
   }, { functional: true, dispatch: false }
 );
 
-export const authSuccessToastEffects = createEffect(
+export const appSuccessToastEffects = createEffect(
   (actions$ = inject(Actions), toast = inject(NgToastService)) => {
     return actions$.pipe(
-      ofType(authActions.verifyAccountSuccess),
+      ofType(
+        authActions.verifyAccountSuccess,
+        adminActions.deleteCourseSuccess,
+        adminActions.courseRegistrationSuccess
+      ),
       tap((message) =>
         toast.success(
-          message.message.message,
           constants.successMessage,
+          message.message.message,
+          constants.toastDuration
+        )
+      )
+    );
+  }, { functional: true, dispatch: false }
+);
+
+export const courseSuccessToastEffects = createEffect(
+  (actions$ = inject(Actions), toast = inject(NgToastService)) => {
+    return actions$.pipe(
+      ofType(
+        adminActions.courseSuccess,
+        adminActions.updateCourseSuccess,
+        adminActions.getAllCoursesSuccess
+      ),
+      tap((response) =>
+        toast.success(
+          constants.successMessage,
+          response.data.message,
+          constants.toastDuration
+        )
+      )
+    );
+  }, { functional: true, dispatch: false }
+);
+
+export const usersSuccessToastEffects = createEffect(
+  (actions$ = inject(Actions), toast = inject(NgToastService)) => {
+    return actions$.pipe(
+      ofType(
+        adminActions.getUserProfileSuccess,
+        adminActions.getAllUsersSuccess,
+        adminActions.updateUserBioSuccess
+      ),
+      tap((response) =>
+        toast.success(
+          constants.successMessage,
+          response.user.message,
           constants.toastDuration
         )
       )
