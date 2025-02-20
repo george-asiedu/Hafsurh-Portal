@@ -14,10 +14,12 @@ import * as AuthEffects from './auth/store/auth.effects';
 import * as ToastEffects from './app-store/toasts.effects';
 import * as RouteEffects from './app-store/routes.effects';
 import * as SpinnerEffects from './app-store/spinner.effects';
+import * as AdminEffects from './admin/store/admin.effects';
 import {authFeature} from './auth/store/auth.reducers';
 import {provideSpinnerConfig} from 'ngx-spinner';
 import {authInterceptor} from './interceptor/auth/auth.interceptor';
 import {refreshTokenInterceptor} from './interceptor/refresh_token/refresh-token.interceptor';
+import {adminFeature} from './admin/store/admin.reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,7 +31,11 @@ export const appConfig: ApplicationConfig = {
     provideSpinnerConfig({ type: 'ball-spin-clockwise-fade'}),
     provideStore(),
     provideState(authFeature),
-    provideEffects(AuthEffects, RouteEffects, ToastEffects, SpinnerEffects),
+    provideState(adminFeature),
+    provideEffects(
+      AuthEffects, RouteEffects,
+      ToastEffects, SpinnerEffects, AdminEffects
+    ),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
   ]
 };
