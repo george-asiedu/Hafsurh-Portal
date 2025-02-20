@@ -4,7 +4,7 @@ import {NgToastModule, ToasterPosition} from 'ng-angular-popup';
 import { appActions } from './app-store/app.actions';
 import { constants } from './utils/constants';
 import { Store } from '@ngrx/store';
-import {selectAuthFeature} from './auth/store/auth.selectors';
+import {appStateSelector} from './app-store/app.selectors';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +14,8 @@ import {selectAuthFeature} from './auth/store/auth.selectors';
 })
 export class AppComponent implements OnInit {
   public toastPosition = ToasterPosition.TOP_RIGHT;
-  private store= inject(Store);
-  private state = this.store.selectSignal(selectAuthFeature);
+  private store = inject(Store);
+  private state = this.store.selectSignal(appStateSelector);
   private key: string = constants.storageKey;
 
   @HostListener('window:beforeunload', ['$event'])
@@ -30,6 +30,6 @@ export class AppComponent implements OnInit {
       const storeData = JSON.parse(persistState);
       this.store.dispatch(appActions.getStoreData(storeData));
     }
-    localStorage.removeItem(this.key);
+    // localStorage.removeItem(this.key);
   }
 }
