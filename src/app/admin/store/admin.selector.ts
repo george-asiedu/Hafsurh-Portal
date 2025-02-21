@@ -24,6 +24,13 @@ export const getCourseData = (state: AdminState) => {
   return [];
 }
 
+export const getUserData = (state: AdminState) => {
+  if (state.user?.type === 'getAllUsers') {
+    return state.user.response.data;
+  }
+  return [];
+}
+
 export const selectCourseId = createSelector(
   selectAdminFeature,
   getCourseId
@@ -42,4 +49,9 @@ export const selectCoursesData = createSelector(
 export const selectUserId = createSelector(
   selectAdminFeature,
   getUserId
+)
+
+export const selectUsersData = createSelector(
+  selectAdminFeature,
+  getUserData
 )
