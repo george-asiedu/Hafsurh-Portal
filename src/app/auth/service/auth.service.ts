@@ -1,7 +1,8 @@
-import {Injectable} from '@angular/core';
+import {Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {
+  RefreshTokenResponse,
   Register,
   RegisterResponse,
   Signin,
@@ -18,6 +19,15 @@ import { selectRefreshToken } from '../store/auth.selectors';
 })
 export class AuthService {
   private appUrl: string = environment.productionEnvironment;
+  private isRefreshing = signal<boolean>(false);
+
+  public getIsRefreshing() {
+    return this.isRefreshing();
+  }
+
+  public setIsRefreshing(isRefreshing: boolean) {
+    return this.isRefreshing.set(isRefreshing);
+  }
 
   public constructor(private http: HttpClient, private store: Store<AuthState>) {}
 
@@ -35,7 +45,7 @@ export class AuthService {
 
   public refreshToken() {
     const token = this.store.selectSignal(selectRefreshToken);
-    return this.http.post<SigninResponse>(
+    return this.http.post<RefreshTokenResponse>(
       `${this.appUrl}auth/refresh-token`,
       { refreshToken: token() }
     );
