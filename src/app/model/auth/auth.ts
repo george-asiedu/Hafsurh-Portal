@@ -59,6 +59,14 @@ export interface SuccessResponse {
   message: string;
 }
 
+export interface RefreshTokenResponse {
+  message: string;
+  data: {
+    accessToken: string;
+    refreshToken: string;
+  }
+}
+
 export enum Roles {
   Admin = 'Admin',
   Student = 'Student',
