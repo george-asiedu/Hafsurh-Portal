@@ -1,0 +1,49 @@
+<div class="users-table-container">
+  @if (isLoading()) {
+    <ngx-spinner
+      bdColor="rgba(0,0,0,0.3)"
+      size="medium"
+      color="#eb664e"
+      type="ball-spin-clockwise-fade"
+      [fullScreen]="false"
+    >
+      <p class="loading"> Loading... </p>
+    </ngx-spinner>
+  }
+
+  <table class="table" *ngIf="!isLoading() && (usersData()?.length ?? 0) > 0">
+    <thead class="head">
+    <tr>
+      <th class="title">Name</th>
+      <th class="title">Email</th>
+      <th class="title">Programme</th>
+      <th class="title">Address</th>
+      <th class="title">DOB</th>
+      <th class="title">Actions</th>
+    </tr>
+    </thead>
+    <tbody class="body">
+    <tr class="body_row" *ngFor="let user of usersData(); let i = index">
+      <td class="data">{{ user.name }}</td>
+      <td class="data">{{ user.email }}</td>
+      <td class="data">{{ user.programme || 'N/A' }}</td>
+      <td class="data">{{ user.address || 'N/A' }}</td>
+      <td class="data">{{ user.dob ? (user.dob | date: 'longDate') : 'N/A' }}</td>
+      <td class="action">
+        <img
+          src="action.svg"
+          class="action_img"
+          alt="action-icon"
+          (click)="toggleDropdown(i)"
+        />
+        <div *ngIf="isDropdownVisible[i]" class="view">
+          <button (click)="viewProfile(user)" class="view_btn">
+            <img src="eye.svg" alt="eye_icon">
+            <p class="edit-paragraph">View Profile</p>
+          </button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
