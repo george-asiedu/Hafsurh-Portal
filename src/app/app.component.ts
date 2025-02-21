@@ -30,6 +30,6 @@ export class AppComponent implements OnInit {
       const storeData = JSON.parse(persistState);
       this.store.dispatch(appActions.getStoreData(storeData));
     }
-    // localStorage.removeItem(this.key);
+    localStorage.removeItem(this.key);
   }
 }
