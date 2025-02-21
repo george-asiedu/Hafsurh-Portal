@@ -7,13 +7,15 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import { EditCourseModalComponent } from './edit-course-modal/edit-course-modal.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AddCourseModalComponent } from './add-course-modal/add-course-modal.component';
+import { UsersTableComponent } from './users-table/users-table.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     CoursesTableComponent,
     EditCourseModalComponent,
-    AddCourseModalComponent
+    AddCourseModalComponent,
+    UsersTableComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { AddCourseModalComponent } from './add-course-modal/add-course-modal.com
     NavbarComponent,
     CoursesTableComponent,
     AddCourseModalComponent,
-    CoursesTableComponent
+    CoursesTableComponent,
+    UsersTableComponent
   ]
 })
 export class SharedModule { }
