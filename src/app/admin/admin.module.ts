@@ -8,7 +8,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CoursesComponent } from './courses/courses.component';
 import { UsersComponent } from './users/users.component';
-import {NgxSpinnerComponent, NgxSpinnerModule} from 'ngx-spinner';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 
 @NgModule({
