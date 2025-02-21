@@ -1,0 +1,82 @@
+@use '../../../styles.scss' as *;
+
+.users-table-container {
+  width: 100%;
+  max-height: 22.5rem;
+  overflow-y: auto;
+
+  .loading {
+    color: var(--red);
+    font-size: 1.25rem;
+  }
+
+  .table {
+    width: 100%;
+
+    .head {
+      position: sticky;
+      background-color: var(--active-nav);
+      top: 0;
+      z-index: 1;
+
+      .title {
+        color: var(--black);
+        text-align: left;
+        padding: 0.75rem;
+        font-size: 1rem;
+        font-weight: normal;
+      }
+    }
+
+    .body {
+      .body_row {
+        font-size: 0.875rem;
+        color: var(--disable-color);
+
+        .data {
+          padding: 0.75rem;
+        }
+
+        .action {
+          position: relative;
+          padding: 0.75rem;
+
+          .action_img {
+            cursor: pointer;
+            width: 1.5rem;
+          }
+
+          .view {
+            position: absolute;
+            right: -0.625rem;
+            margin-top: 0.125rem;
+            width: 12.5rem;
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            z-index: 10;
+
+            .view_btn {
+              @include flex-column;
+              gap: 0.75rem;
+              width: 100%;
+              padding: 0.5rem 1rem;
+
+              &:hover {
+                background-color: var(--active-nav);
+              }
+            }
+
+            .edit-paragraph {
+              text-align: left;
+              color: var(--black);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--form-background);
+}
