@@ -1,23 +1,23 @@
 import {HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
-import { inject, signal } from '@angular/core';
+import { inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { catchError, exhaustMap, tap, throwError } from 'rxjs';
+import {catchError, switchMap, throwError} from 'rxjs';
 import { AuthService } from '../../auth/service/auth.service';
 import { authActions } from '../../auth/store/auth.actions';
 
 export const refreshTokenInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
   const store = inject(Store);
-  const isRefreshing = signal<boolean>(false);
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === 401 && !isRefreshing()) {
+      if (error.status === 401 && !authService.getIsRefreshing()) {
+        authService.setIsRefreshing(true);
+
         return authService.refreshToken().pipe(
-          tap(() => isRefreshing.set(true)),
-          exhaustMap((response) => {
+          switchMap((response) => {
             store.dispatch(authActions.refreshTokenSuccess({ data: response }));
-            isRefreshing.set(false);
+            authService.setIsRefreshing(false);
             const newAccessToken = response.data.accessToken;
             const newRequest = req.clone({
               setHeaders: {
@@ -26,10 +26,10 @@ export const refreshTokenInterceptor: HttpInterceptorFn = (req, next) => {
             });
             return next(newRequest);
           }),
-          catchError((err) => {
-            isRefreshing.set(false);
+          catchError((err: HttpErrorResponse) => {
+            authService.setIsRefreshing(false);
             store.dispatch(authActions.logout());
-            return throwError(() => err);
+            return throwError(() => err.error.message);
           })
         );
       }
