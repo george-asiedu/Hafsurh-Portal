@@ -9,13 +9,13 @@
   .sidebar {
     width: 20%;
     height: 100vh;
-    background: var(--background-color);
+    background: var(--white);
   }
 
   .outlet {
     width: 80%;
     height: 100vh;
-    background: var(--dashboard-color);
+    background: var(--dash-color);
     overflow-y: auto;
   }
 }
