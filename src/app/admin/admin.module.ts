@@ -7,7 +7,6 @@ import {RouterOutlet} from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CoursesComponent } from './courses/courses.component';
-import { UsersComponent } from './users/users.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 
 
@@ -16,8 +15,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     HomeComponent,
     SidebarComponent,
     DashboardComponent,
-    CoursesComponent,
-    UsersComponent
+    CoursesComponent
   ],
   imports: [
     CommonModule,
