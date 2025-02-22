@@ -11,7 +11,7 @@
     </ngx-spinner>
   }
 
-  <table class="table" *ngIf="!isLoading()">
+  <table class="table" *ngIf="!isLoading() && (coursesData()?.length ?? 0) > 0">
     <thead class="head">
       <tr>
         <th class="title">Course ID</th>
@@ -21,7 +21,7 @@
         <th class="title">Actions</th>
       </tr>
     </thead>
-    <tbody class="body" *ngIf="(coursesData() || []).length > 0">
+    <tbody class="body">
       <tr
         class="body_row"
         *ngFor="let course of coursesData(); let i = index"

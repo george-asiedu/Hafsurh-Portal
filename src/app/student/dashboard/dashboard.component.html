@@ -1,3 +1,106 @@
 <div class="container">
   <app-navbar />
+  <div class="dashboard">
+    <div class="welcome">
+      <h3>Welcome, <span>{{name}}</span> to your dashboard👋</h3>
+      <p>Today is {{ today | date: 'EEEE, dd MMMM y' }}</p>
+    </div>
+    <div class="grid-container">
+      <div class="grid-box">
+        <p>Name: <strong>{{name}}</strong></p>
+        <p>Email: <strong>{{email}}</strong></p>
+        <p>Phone: <strong>{{phone || 'N/A' }}</strong></p>
+        <p>Date of Birth: <strong>{{dob ? (dob | date: 'longDate'): 'N/A'}}</strong></p>
+        <p>Address: <strong>{{address || 'N/A' }}</strong></p>
+      </div>
+      <div class="grid-box program">
+        <div class="upper">
+          <p>Programme: <strong>{{programme || 'N/A'}}</strong></p>
+          <span class="flex">
+            <p>Level: <strong>400</strong></p>
+            <p>Status: <strong>Alumni</strong></p>
+          </span>
+        </div>
+        <div class="lower">
+          <span>
+            <p>Class</p>
+            <strong>Second class <br>upper</strong>
+          </span>
+          <span>
+            <p>CGPA</p>
+            <strong>38.537</strong>
+          </span>
+          <span>
+            <p>CWA</p>
+            <strong>77.3</strong>
+          </span>
+        </div>
+      </div>
+      <div class="grid-box"></div>
+    </div>
+    <div class="tiles">
+      <div class="content">
+        <span class="color">
+          <p>Opening b/c:</p>
+          <p>₦0</p>
+        </span>
+        <span>
+          <p>Total Fees:</p>
+          <p>₦0</p>
+        </span>
+        <span class="color">
+          <p>Total bill:</p>
+          <p>₦0</p>
+        </span>
+        <span>
+          <p class="paid">Paid</p>
+          <p>₦0</p>
+        </span>
+        <span class="color">
+          <p>Outstanding b/c:</p>
+          <p>₦0</p>
+        </span>
+      </div>
+      <div class="content">
+        <div class="image">
+          <img src="results.png" alt="results_icon">
+        </div>
+        <p class="image_text">RESULTS</p>
+      </div>
+      <div class="content">
+        <span class="color">
+          <p>Resit Courses:</p>
+          <p>0</p>
+        </span>
+        <span>
+          <p>Resit Registered:</p>
+          <p>0</p>
+        </span>
+        <span class="color">
+          <p>Resit Done:</p>
+          <p>0</p>
+        </span>
+        <span>
+          <p>Resit Paid</p>
+          <p>₦0</p>
+        </span>
+        <span class="color">
+          <p>Total Resit Paid:</p>
+          <p>₦0</p>
+        </span>
+      </div>
+      <div class="content">
+        <div class="image">
+          <img src="registration.png" alt="registration_icon">
+        </div>
+        <p class="image_text">REGISTRATION</p>
+      </div>
+      <div class="content">
+        <div class="image">
+          <img src="graduation.png" alt="graduation_icon">
+        </div>
+        <p class="image_text">GRADUATION</p>
+      </div>
+    </div>
+  </div>
 </div>

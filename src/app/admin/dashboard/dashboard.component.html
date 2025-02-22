@@ -1,1 +1,14 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <app-navbar />
+  <div class="welcome">
+    <h3>Welcome, <span>{{name}}</span> to your dashboard👋</h3>
+    <p>Today is {{ today | date: 'EEEE, dd MMMM y' }}</p>
+  </div>
+  <div class="row">
+    <h4>Total Users: <span>{{count()}}</span></h4>
+  </div>
+
+  <div class="table">
+    <app-users-table />
+  </div>
+</div>
