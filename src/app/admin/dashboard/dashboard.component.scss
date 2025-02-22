@@ -1,0 +1,47 @@
+@use '../../../styles.scss' as *;
+
+.dashboard-container {
+  width: 100%;
+  @include flex-column;
+  gap: 1rem;
+
+  .welcome {
+    padding: 1.25rem 1.5rem 0;
+
+    h3 {
+      font-size: 1.125rem;
+      color: var(--black);
+      margin-bottom: 0.325rem;
+
+      span {
+        color: var(--primary);
+        font-weight: bolder;
+      }
+    }
+
+    p {
+      font-size: 0.875rem;
+    }
+  }
+
+  .row {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    @include justify-between;
+
+    h4 {
+      font-size: 1.125rem;
+      font-weight: bold;
+      color: var(--black);
+
+      span {
+        color: var(--red);
+        font-weight: bolder;
+      }
+    }
+  }
+
+  .table {
+    padding: 0 1.5rem;
+  }
+}
