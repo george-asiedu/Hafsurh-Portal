@@ -17,7 +17,7 @@
   </div>
   <div class="dropdown" *ngIf="isDropdownOpen">
     <div
-      routerLink="/profile"
+      [routerLink]="['/profile', id]"
       class="row"
       (click)="profile()"
     >
