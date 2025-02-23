@@ -62,15 +62,11 @@ export const getAllCoursesEffects = createEffect(
 )
 
 export const registerCoursesEffects = createEffect(
-  (actions$ = inject(Actions),
-   adminService = inject(AdminService),
-   store = inject(Store<AdminState>)) => {
+  (actions$ = inject(Actions), adminService = inject(AdminService)) => {
     return actions$.pipe(
       ofType(adminActions.registerCourse),
-      withLatestFrom(store.select(selectCourseId)),
-      filter(([, id]) => !!id && id !== ''),
-      switchMap(([_, id]) =>
-        adminService.registerCourse(id as string).pipe(
+      switchMap(({courseId}) =>
+        adminService.registerCourse(courseId).pipe(
           mapResponse({
             next: (response) => adminActions.courseRegistrationSuccess({message: response}),
             error: (error: HttpErrorResponse) => adminActions.courseFailure({error})
@@ -118,10 +114,7 @@ export const getAllUsersEffects = createEffect(
 )
 
 export const userProfileEffects = createEffect(
-  (actions$ = inject(Actions),
-   adminService = inject(AdminService),
-   store = inject(Store)
-  ) => {
+  (actions$ = inject(Actions), adminService = inject(AdminService)) => {
     return actions$.pipe(
       ofType(adminActions.getUserProfile),
       switchMap(({id}) =>

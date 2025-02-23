@@ -1,6 +1,8 @@
 import {Component,OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {selectUserProfile} from '../../admin/store/admin.selector';
+import {selectCourseId, selectCoursesData, selectUserProfile} from '../../admin/store/admin.selector';
+import {adminActions} from '../../admin/store/admin.actions';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,11 +18,15 @@ export class DashboardComponent implements OnInit {
   public phone: string | null = 'N/A';
   public programme: string | null = 'N/A';
   public email: string = '';
+  public courseId: string = '';
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private route: ActivatedRoute) {
+    this.store.dispatch(adminActions.getAllCourses());
+  }
 
   public ngOnInit() {
     const currentUser = this.store.selectSignal(selectUserProfile);
+    // const courses = this.store.selectSignal(selectCoursesData);
     const user = currentUser();
     if (user) {
       this.name = user.name;
@@ -30,5 +36,20 @@ export class DashboardComponent implements OnInit {
       this.programme = user.programme;
       this.dob = user.dob;
     }
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.store.dispatch(adminActions.getUserProfile({id}));
+    }
+    this.store.dispatch(adminActions.getAllCourses())
+  }
+
+  public registerCourse() {
+    const id = this.store.selectSignal(selectCourseId);
+    const activeId = id();
+    if (activeId) {
+      this.courseId = activeId;
+      console.log('course id: ', this.courseId);
+    }
+    this.store.dispatch(adminActions.registerCourse({courseId: this.courseId}));
   }
 }
