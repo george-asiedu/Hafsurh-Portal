@@ -19,4 +19,10 @@ export const routes: Routes = [
     canActivate: [authGuard],
     data: {roles: [Roles.Student]}
   },
+  {
+    path: 'profile/:id',
+    loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule),
+    canActivate: [authGuard],
+    data: {roles: [Roles.Student, Roles.Admin]}
+  }
 ];
