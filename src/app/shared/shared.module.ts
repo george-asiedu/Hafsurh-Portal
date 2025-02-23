@@ -8,6 +8,9 @@ import { EditCourseModalComponent } from './edit-course-modal/edit-course-modal.
 import {ReactiveFormsModule} from '@angular/forms';
 import { AddCourseModalComponent } from './add-course-modal/add-course-modal.component';
 import { UsersTableComponent } from './users-table/users-table.component';
+import { ProfileComponent } from './profile/profile.component';
+import {SharedRoutingModule} from './shared-routing.module';
+import { UpdateBioModalComponent } from './update-bio-modal/update-bio-modal.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,9 @@ import { UsersTableComponent } from './users-table/users-table.component';
     CoursesTableComponent,
     EditCourseModalComponent,
     AddCourseModalComponent,
-    UsersTableComponent
+    UsersTableComponent,
+    ProfileComponent,
+    UpdateBioModalComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +30,8 @@ import { UsersTableComponent } from './users-table/users-table.component';
     NgClass,
     DatePipe,
     NgxSpinnerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedRoutingModule
   ],
   exports: [
     NavbarComponent,
