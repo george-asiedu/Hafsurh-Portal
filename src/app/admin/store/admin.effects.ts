@@ -124,10 +124,8 @@ export const userProfileEffects = createEffect(
   ) => {
     return actions$.pipe(
       ofType(adminActions.getUserProfile),
-      withLatestFrom(store.select(selectUserId)),
-      filter(([, id]) => !!id && id !== ''),
-      switchMap(([_, id]) =>
-        adminService.getUserProfile(id as string).pipe(
+      switchMap(({id}) =>
+        adminService.getUserProfile(id).pipe(
           mapResponse({
             next: (response) => adminActions.getUserProfileSuccess({user: response}),
             error: (error: HttpErrorResponse) => adminActions.userFailure({error})
