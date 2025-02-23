@@ -1,0 +1,86 @@
+<div class="course_container">
+  @if (isLoading()) {
+    <ngx-spinner
+      bdColor = "rgba(0,0,0,0.3)"
+      size = "medium"
+      color = "#eb664e"
+      type = "ball-spin-clockwise-fade"
+      [fullScreen] = "true"
+    >
+      <p class="loading"> Loading... </p>
+    </ngx-spinner>
+  }
+  <div class="course_modal">
+    <div class="heading">
+      <h3>Update Bio Info</h3>
+      <button (click)="onCancel()" class="cancel">&times;</button>
+    </div>
+    <form class="form_container" [formGroup]="updateProfileForm" (ngSubmit)="updateProfile()">
+      <div class="input_control">
+        <label for="programme">Programme</label>
+        <input
+          type="text"
+          required
+          id="programme"
+          formControlName="programme"
+          placeholder="Enter your programme"
+        >
+        <div
+          class="error"
+          *ngIf="getControl('programme')?.invalid && (getControl('programme')?.touched || getControl('programme')?.dirty)"
+        >
+          <div *ngIf="getControl('programme')?.errors?.['required']">programme is required</div>
+          <div *ngIf="getControl('programme')?.invalid && getControl('programme')?.touched">must only contain alphabets</div>
+        </div>
+      </div>
+      <div class="input_control">
+        <label for="address">Address</label>
+        <input
+          type="text"
+          required
+          id="address"
+          formControlName="address"
+          placeholder="Enter your address"
+        >
+        <div
+          class="error"
+          *ngIf="getControl('address')?.invalid && (getControl('address')?.touched || getControl('address')?.dirty)"
+        >
+          <div *ngIf="getControl('address')?.errors?.['required']">address is required</div>
+        </div>
+      </div>
+      <div class="input_control">
+        <label for="dob">Date of Birth</label>
+        <input
+          type="date"
+          required
+          id="dob"
+          formControlName="dob"
+          placeholder="Enter dob"
+        >
+        <div
+          class="error"
+          *ngIf="getControl('dob')?.invalid && (getControl('dob')?.touched || getControl('dob')?.dirty)"
+        >
+          <div *ngIf="getControl('dob')?.errors?.['required']">dob is required</div>
+        </div>
+      </div>
+      <div class="buttons">
+        <button
+          class="cancel_btn"
+          (click)="onCancel()"
+          type="button"
+        >
+          Cancel
+        </button>
+        <button
+          class="submit_btn"
+          type="submit"
+          [disabled]="updateProfileForm.invalid || isLoading()"
+        >
+          Update bio
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
