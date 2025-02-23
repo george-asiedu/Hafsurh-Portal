@@ -1,8 +1,6 @@
-import {Component, computed, inject, OnInit} from '@angular/core';
+import {Component,OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {AdminState} from '../../admin/store/admin.state';
-import {selectUsersData} from '../../admin/store/admin.selector';
-import {selectUser} from '../../auth/store/auth.selectors';
+import {selectUserProfile} from '../../admin/store/admin.selector';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +11,7 @@ import {selectUser} from '../../auth/store/auth.selectors';
 export class DashboardComponent implements OnInit {
   public today: Date = new Date();
   public name: string = '';
-  public dob: string | null = 'N/A';
+  public dob: Date | null = null;
   public address: string | null = 'N/A';
   public phone: string | null = 'N/A';
   public programme: string | null = 'N/A';
@@ -22,7 +20,7 @@ export class DashboardComponent implements OnInit {
   constructor(private store: Store) {}
 
   public ngOnInit() {
-    const currentUser = this.store.selectSignal(selectUser);
+    const currentUser = this.store.selectSignal(selectUserProfile);
     const user = currentUser();
     if (user) {
       this.name = user.name;
