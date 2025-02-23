@@ -8,7 +8,9 @@ export interface User {
   dob: Date | null;
   phone: string | null;
   address: string | null;
-  registered: boolean
+  registered: boolean;
+  createdAt: Date | null;
+  updatedAt: Date | null;
 }
 
 export interface Profile {
