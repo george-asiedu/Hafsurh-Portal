@@ -1,0 +1,69 @@
+@use '../../../styles.scss' as *;
+
+.profile_container {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: var(--dash-color);
+
+  .profile_content {
+    padding: 1.25rem 1.5rem;
+    @include flex-column;
+    gap: 2rem;
+
+    .welcome {
+      @include justify-between;
+
+      h4 {
+        font-size: 1.125rem;
+        font-weight: bold;
+        color: var(--black);
+      }
+
+      .profile_btn {
+        @include dashboard_btn;
+      }
+    }
+
+    .profile {
+      @include flex-column;
+      gap: 1rem;
+      background-color: var(--white);
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+      padding: 2rem;
+
+      .personal_info {
+        @include flex-column;
+        gap: 0.5rem;
+
+        .title {
+          font-size: 1.125rem;
+          color: var(--black);
+        }
+
+        .info {
+          @include justify-between;
+          gap: 2rem;
+
+          .content {
+            @include flex-column;
+            gap: 1rem;
+
+            span {
+              color: var(--black);
+
+              p {
+                font-size: 0.875rem;
+              }
+
+              h5 {
+                font-size: 1.125rem;
+                font-weight: normal;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

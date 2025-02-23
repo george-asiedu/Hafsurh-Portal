@@ -1,0 +1,108 @@
+@use '../../../styles.scss' as *;
+
+.course_container {
+  position: fixed;
+  @include justify-center;
+  z-index: 50;
+  background-color: var(--black);
+  opacity: 0.6;
+  inset: 0;
+
+  .loading {
+    color: var(--red);
+    font-size: 1.25rem;
+  }
+
+  .course_modal {
+    background-color: var(--white);
+    padding: 1.5rem;
+    width: 25rem;
+    height: auto;
+    border: none;
+    border-radius: 0.325rem;
+
+    .heading {
+      @include justify-between;
+      margin-bottom: 1rem;
+      color: var(--black);
+
+      h3 {
+        font-weight: bold;
+        font-size: 1.125rem;
+      }
+
+      .cancel {
+        font-weight: bold;
+        cursor: pointer;
+        padding: 0.5rem;
+        background-color: var(--active-nav);
+        border: none;
+        font-size: 1.5rem;
+      }
+    }
+
+    .form_container {
+      @include flex-column;
+      gap: 0.625rem;
+
+      .input_control {
+        @include flex-column;
+        gap: 0.325rem;
+
+        label {
+          font-size: 0.875rem;
+          font-weight: bold;
+        }
+
+        input {
+          width: 100%;
+          padding: 0.625rem 0.875rem;
+          border: 1px solid var(--border-color);
+          border-radius: 0.375rem;
+          color: var(--black);
+          caret-color: var(--secondary);
+
+          &:placeholder-shown {
+            font-size: 0.875rem;
+          }
+
+          &:focus {
+            outline: none;
+            border: 1px solid var(--black);
+          }
+
+          &:hover {
+            cursor: pointer;
+            border: 1px solid var(--black);
+          }
+
+          &:valid {
+            border: 1.5px solid var(--success);
+          }
+        }
+
+        .error {
+          color: var(--red);
+          font-size: 0.75rem;
+          @include justify-between;
+        }
+      }
+
+      .buttons {
+        @include flex-center;
+        justify-content: flex-end;
+        width: 100%;
+        gap: 1rem;
+        margin-top: 1.5rem;
+
+        .cancel_btn {
+          @include header_btn;
+        }
+
+        .submit_btn {
+          @include dashboard_btn;
+        }
+      }
+    }
+  }
+}
