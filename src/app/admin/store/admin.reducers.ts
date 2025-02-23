@@ -85,9 +85,10 @@ export const adminFeature = createFeature({
       isLoading: false,
       user: { type: 'updateBio' as const, response: user }
     })),
-    on(adminActions.getUserProfile, (state) => ({
+    on(adminActions.getUserProfile, (state, {id}) => ({
       ...state,
-      isLoading: true
+      isLoading: true,
+      id
     })),
     on(adminActions.getUserProfileSuccess, (state, {user}) => ({
       ...state,
