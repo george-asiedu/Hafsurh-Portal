@@ -43,6 +43,7 @@
 
     .chevron {
       width: 1rem;
+      cursor: pointer;
     }
   }
 
@@ -75,7 +76,7 @@
       }
 
       &:hover {
-        background-color: var(--selected-color);
+        background-color: var(--active-nav);
       }
     }
   }
