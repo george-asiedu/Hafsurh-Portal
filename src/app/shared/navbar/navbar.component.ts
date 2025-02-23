@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   public isDropdownOpen: boolean = false;
   public name: string = '';
   public role: string = '';
+  public id: string = '';
 
   public constructor(private store: Store<AuthState>) {}
 
@@ -23,6 +24,7 @@ export class NavbarComponent implements OnInit {
     if (user) {
       this.name = user.name;
       this.role = user.role;
+      this.id = user.id;
     }
   }
 
