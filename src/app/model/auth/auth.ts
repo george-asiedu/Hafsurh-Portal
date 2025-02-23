@@ -20,18 +20,18 @@ export interface RegisterResponse {
   message: "Success",
   data: {
     user: {
-      id: 1,
-      name: string,
-      email: string,
-      role: string,
-      isVerified: boolean,
-      programme: null,
-      dob: null,
-      phone: null,
-      address: null,
-      registered: boolean
+      id: string;
+      name: string;
+      email: string;
+      role: string;
+      isVerified: boolean;
+      programme: null;
+      dob: null;
+      phone: null;
+      address: null;
+      registered: boolean;
     },
-    token: string
+    token: string;
   }
 }
 
@@ -41,16 +41,15 @@ export interface SigninResponse {
     accessToken: string;
     refreshToken: string;
     user: {
-      id: 1,
-      name: string,
-      email: string,
-      role: string,
-      isVerified: boolean,
-      programme: null,
-      dob: null,
-      phone: null,
-      address: null,
-      registered: boolean
+      id: string;
+      name: string;
+      email: string;
+      role: string;
+      isVerified: boolean;
+      programme: string | null;
+      dob: string | null;
+      phone: string | null;
+      address: string | null;
     }
   }
 }
