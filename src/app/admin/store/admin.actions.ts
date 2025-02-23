@@ -25,7 +25,7 @@ export const adminActions = createActionGroup({
     'Course Failure': props<{ error: HttpErrorResponse }>(),
     'Get All Users': emptyProps(),
     'Update User Bio': props<{ user: UpdateBio }>(),
-    'Get User Profile': emptyProps(),
+    'Get User Profile': props<{ id: string }>(),
     'Get User Profile Success': props<{ user: Profile }>(),
     'Update User Bio Success': props<{ user: Profile }>(),
     'Get All Users Success': props<{ user: GetAllUsers }>(),
