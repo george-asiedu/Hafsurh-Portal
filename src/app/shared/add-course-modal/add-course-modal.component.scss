@@ -4,9 +4,9 @@
   position: fixed;
   @include justify-center;
   z-index: 50;
-  background-color: var(--black);
-  opacity: 0.6;
+  background-color: rgba(0, 0, 0, 0.6);
   inset: 0;
+  backdrop-filter: blur(5px);
 
   .loading {
     color: var(--red);
@@ -20,6 +20,7 @@
     height: auto;
     border: none;
     border-radius: 0.325rem;
+    z-index: 100;
 
     .heading {
       @include justify-between;

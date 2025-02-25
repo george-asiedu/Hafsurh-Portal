@@ -1,8 +1,7 @@
 import {Component,OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {selectCourseId, selectCoursesData, selectUserProfile} from '../../admin/store/admin.selector';
+import {selectCourseId, selectUserProfile} from '../../admin/store/admin.selector';
 import {adminActions} from '../../admin/store/admin.actions';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,13 +19,10 @@ export class DashboardComponent implements OnInit {
   public email: string = '';
   public courseId: string = '';
 
-  constructor(private store: Store, private route: ActivatedRoute) {
-    this.store.dispatch(adminActions.getAllCourses());
-  }
+  constructor(private store: Store) {}
 
   public ngOnInit() {
     const currentUser = this.store.selectSignal(selectUserProfile);
-    // const courses = this.store.selectSignal(selectCoursesData);
     const user = currentUser();
     if (user) {
       this.name = user.name;
@@ -36,11 +32,6 @@ export class DashboardComponent implements OnInit {
       this.programme = user.programme;
       this.dob = user.dob;
     }
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.store.dispatch(adminActions.getUserProfile({id}));
-    }
-    this.store.dispatch(adminActions.getAllCourses())
   }
 
   public registerCourse() {
