@@ -10,7 +10,6 @@ import { AddCourseModalComponent } from './add-course-modal/add-course-modal.com
 import { UsersTableComponent } from './users-table/users-table.component';
 import { ProfileComponent } from './profile/profile.component';
 import {SharedRoutingModule} from './shared-routing.module';
-import { UpdateBioModalComponent } from './update-bio-modal/update-bio-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +18,7 @@ import { UpdateBioModalComponent } from './update-bio-modal/update-bio-modal.com
     EditCourseModalComponent,
     AddCourseModalComponent,
     UsersTableComponent,
-    ProfileComponent,
-    UpdateBioModalComponent
+    ProfileComponent
   ],
   imports: [
     CommonModule,
