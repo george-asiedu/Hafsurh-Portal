@@ -8,6 +8,11 @@
   gap: 1rem;
   background-color: var(--dash-color);
 
+  .loading {
+    color: var(--red);
+    font-size: 1.25rem;
+  }
+
   .dashboard {
     padding: 0.625rem 1.5rem 0;
     @include flex-column;
@@ -15,20 +20,30 @@
 
     .welcome {
       margin-bottom: 1.5rem;
+      @include justify-between;
 
-      h3 {
-        font-size: 1.125rem;
-        color: var(--black);
-        margin-bottom: 0.325rem;
+      .column {
+        @include flex-column;
+        gap: 0.5rem;
 
-        span {
-          color: var(--primary);
-          font-weight: bolder;
+        h3 {
+          font-size: 1.125rem;
+          color: var(--black);
+          margin-bottom: 0.325rem;
+
+          span {
+            color: var(--primary);
+            font-weight: bolder;
+          }
+        }
+
+        p {
+          font-size: 0.875rem;
         }
       }
 
-      p {
-        font-size: 0.875rem;
+      .bio_btn {
+        @include dashboard_btn;
       }
     }
 
@@ -94,7 +109,7 @@
 
       .content {
         background-color: var(--white);
-        width: 19%;
+        width: 20%;
         @include flex-column;
         box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
         cursor: pointer;
@@ -137,5 +152,4 @@
       }
     }
   }
-
 }
