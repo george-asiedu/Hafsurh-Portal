@@ -1,17 +1,6 @@
 <div class="profile_container">
   <app-navbar />
   <div class="profile_content">
-    <div class="welcome">
-      <h3>Welcome, please update your bio information</h3>
-      <button
-        type="button"
-        class="profile_btn"
-        (click)="showModal()"
-      >
-        Update bio
-      </button>
-    </div>
-
     <div class="profile">
       <div class="personal_info">
         <h4 class="title">Profile Information</h4>
@@ -77,9 +66,3 @@
     </div>
   </div>
 </div>
-
-<app-update-bio-modal
-  *ngIf="isModalVisible"
-  (cancel)="cancelModal()"
-  (submit)="confirmData()"
-/>

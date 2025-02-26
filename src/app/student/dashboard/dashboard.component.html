@@ -1,9 +1,29 @@
 <div class="container">
   <app-navbar />
+  @if (loading) {
+    <ngx-spinner
+      bdColor = "rgba(0,0,0,0.3)"
+      size = "medium"
+      color = "#eb664e"
+      type = "ball-spin-clockwise-fade"
+      [fullScreen] = "true"
+    >
+      <p class="loading"> Loading... </p>
+    </ngx-spinner>
+  }
   <div class="dashboard">
     <div class="welcome">
-      <h3>Welcome, <span>{{name}}</span> to your dashboard👋</h3>
-      <p>Today is {{ today | date: 'EEEE, dd MMMM y' }}</p>
+      <div class="column">
+        <h3>Welcome, <span>{{name}}</span> to your dashboard👋</h3>
+        <p>Today is {{ today | date: 'EEEE, dd MMMM y' }}</p>
+      </div>
+      <button
+        type="button"
+        class="bio_btn"
+        (click)="showModal()"
+      >
+        Update bio-data
+      </button>
     </div>
     <div class="grid-container">
       <div class="grid-box">
@@ -104,3 +124,10 @@
     </div>
   </div>
 </div>
+
+<app-update-bio-modal
+  *ngIf="isModalVisible"
+  (cancel)="cancelModal()"
+  (submit)="confirmData()"
+  [id]="id"
+/>
