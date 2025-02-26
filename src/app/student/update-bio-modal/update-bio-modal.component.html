@@ -1,5 +1,5 @@
 <div class="course_container">
-  @if (isLoading()) {
+  @if (isLoading) {
     <ngx-spinner
       bdColor = "rgba(0,0,0,0.3)"
       size = "medium"
@@ -15,7 +15,7 @@
       <h3>Update Bio Info</h3>
       <button (click)="onCancel()" class="cancel">&times;</button>
     </div>
-    <form class="form_container" [formGroup]="updateProfileForm" (ngSubmit)="updateProfile()">
+    <form class="form_container" [formGroup]="updateProfileForm" (ngSubmit)="onSubmit()">
       <div class="input_control">
         <label for="programme">Programme</label>
         <input
@@ -65,6 +65,23 @@
           <div *ngIf="getControl('dob')?.errors?.['required']">dob is required</div>
         </div>
       </div>
+      <div class="input_control">
+        <label for="phone">Phone</label>
+        <input
+          type="text"
+          required
+          id="phone"
+          formControlName="phone"
+          placeholder="Enter your phone"
+        >
+        <div
+          class="error"
+          *ngIf="getControl('phone')?.invalid && (getControl('phone')?.touched || getControl('phone')?.dirty)"
+        >
+          <div *ngIf="getControl('phone')?.errors?.['required']">Phone is required</div>
+        </div>
+      </div>
+
       <div class="buttons">
         <button
           class="cancel_btn"
@@ -76,7 +93,7 @@
         <button
           class="submit_btn"
           type="submit"
-          [disabled]="updateProfileForm.invalid || isLoading()"
+          [disabled]="updateProfileForm.invalid || isLoading"
         >
           Update bio
         </button>

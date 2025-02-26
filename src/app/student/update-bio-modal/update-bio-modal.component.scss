@@ -1,4 +1,4 @@
-@use '../../../styles.scss' as *;
+@use '../../../styles' as *;
 
 .course_container {
   position: fixed;
@@ -102,6 +102,15 @@
 
         .submit_btn {
           @include dashboard_btn;
+
+          &:hover {
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+          }
+
+          &:disabled {
+            background: linear-gradient(90deg, var(--disable-color), var(--border-color));
+            cursor: not-allowed;
+          }
         }
       }
     }
