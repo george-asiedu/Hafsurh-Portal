@@ -24,8 +24,8 @@ export interface GetAllUsers {
 }
 
 export interface UpdateBio {
-  programme: string | null;
-  dob: Date | null;
-  phone: string | null;
-  address: string | null;
+  programme: string;
+  dob: string;
+  phone: string;
+  address: string;
 }

@@ -31,6 +31,13 @@ export const getUser = (state: AuthState) => {
   return null;
 }
 
+export const getUserId = (state: AuthState)=> {
+  if (state.data?.type === 'signin') {
+    return state.data.response.data.user.id;
+  }
+  return '';
+}
+
 export const selectIsLoading = createSelector(
   selectAuthFeature,
   (state) => state.isLoading
@@ -40,3 +47,4 @@ export const selectAccessToken = createSelector(selectAuthFeature, getAccessToke
 export const selectRefreshToken = createSelector(selectAuthFeature, getRefreshToken);
 export const selectUser = createSelector(selectAuthFeature, getUser);
 export const selectRegisterToken = createSelector(selectAuthFeature, getRegisterToken);
+export const selectUserId = createSelector(selectAuthFeature, getUserId);
