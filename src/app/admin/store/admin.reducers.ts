@@ -37,16 +37,6 @@ export const adminFeature = createFeature({
       isLoading: false,
       data: { type: 'getCourses' as const, response: data }
     })),
-    on(adminActions.registerCourse, (state, {courseId}) => ({
-      ...state,
-      isLoading: true,
-      courseId
-    })),
-    on(adminActions.courseRegistrationSuccess, (state, {message}) => ({
-      ...state,
-      isLoading: false,
-      message
-    })),
     on(adminActions.deleteCourseSuccess, (state, {message}) => ({
       ...state,
       isLoading: false,
@@ -75,15 +65,6 @@ export const adminFeature = createFeature({
       ...state,
       isLoading: false,
       user: { type: 'getAllUsers' as const, response: user }
-    })),
-    on(adminActions.updateUserBio, (state) => ({
-      ...state,
-      isLoading: true
-    })),
-    on(adminActions.updateUserBioSuccess, (state, {user}) => ({
-      ...state,
-      isLoading: false,
-      user: { type: 'updateBio' as const, response: user }
     })),
     on(adminActions.getUserProfile, (state, {id}) => ({
       ...state,
