@@ -7,7 +7,7 @@ import {mapResponse} from '@ngrx/operators';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Store} from '@ngrx/store';
 import {AdminState} from './admin.state';
-import {selectCourseId, selectUserId} from './admin.selector';
+import {selectCourseId} from './admin.selector';
 
 export const addCourseEffects = createEffect(
   (actions$ = inject(Actions), adminService = inject(AdminService)) => {
@@ -61,22 +61,6 @@ export const getAllCoursesEffects = createEffect(
   }, { functional: true, dispatch: true }
 )
 
-export const registerCoursesEffects = createEffect(
-  (actions$ = inject(Actions), adminService = inject(AdminService)) => {
-    return actions$.pipe(
-      ofType(adminActions.registerCourse),
-      switchMap(({courseId}) =>
-        adminService.registerCourse(courseId).pipe(
-          mapResponse({
-            next: (response) => adminActions.courseRegistrationSuccess({message: response}),
-            error: (error: HttpErrorResponse) => adminActions.courseFailure({error})
-          })
-        )
-      )
-    );
-  }, { functional: true, dispatch: true }
-)
-
 export const deleteCourseEffects = createEffect(
   (actions$ = inject(Actions),
    adminService = inject(AdminService),
@@ -121,27 +105,6 @@ export const userProfileEffects = createEffect(
         adminService.getUserProfile(id).pipe(
           mapResponse({
             next: (response) => adminActions.getUserProfileSuccess({user: response}),
-            error: (error: HttpErrorResponse) => adminActions.userFailure({error})
-          })
-        )
-      )
-    );
-  }, { functional: true, dispatch: true }
-)
-
-export const updateBioEffects = createEffect(
-  (actions$ = inject(Actions),
-   adminService = inject(AdminService),
-   store = inject(Store)
-  ) => {
-    return actions$.pipe(
-      ofType(adminActions.updateUserBio),
-      withLatestFrom(store.select(selectUserId)),
-      filter(([, id]) => !!id && id !== ''),
-      switchMap(([{user}, id]) =>
-        adminService.updateBioData(id as string, user).pipe(
-          mapResponse({
-            next: (response) => adminActions.updateUserBioSuccess({user: response}),
             error: (error: HttpErrorResponse) => adminActions.userFailure({error})
           })
         )
