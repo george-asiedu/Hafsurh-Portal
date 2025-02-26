@@ -10,9 +10,6 @@ export interface AdminState {
     {type: 'updateCourse', response: CourseResponse} |
     {type: 'getCourses', response: GetAllCourses} |
     null;
-  user: {type: 'getUserProfile', response: Profile} |
-    {type: 'updateBio', response: Profile} |
-    {type: 'getAllUsers', response: GetAllUsers} |
-    null;
+  user: {type: 'getUserProfile', response: Profile} | {type: 'getAllUsers', response: GetAllUsers} | null;
   message: SuccessResponse | null;
 }
