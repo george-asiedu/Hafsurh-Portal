@@ -4,6 +4,8 @@ import {AddCourse, CourseResponse, GetAllCourses, UpdateCourse} from '../../mode
 import {environment} from '../../../environments/environment';
 import {SuccessResponse} from '../../model/auth/auth';
 import {GetAllUsers, Profile, UpdateBio} from '../../model/users/users';
+import {Store} from '@ngrx/store';
+import {selectUserId} from '../../auth/store/auth.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ import {GetAllUsers, Profile, UpdateBio} from '../../model/users/users';
 export class AdminService {
   private appUrl: string = environment.productionEnvironment;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private store: Store) {}
 
   public getAllCourses() {
     return this.http.get<GetAllCourses>(`${this.appUrl}courses/all-courses`);
@@ -26,7 +28,9 @@ export class AdminService {
   }
 
   public registerCourse(courseId: string) {
-    return this.http.post<SuccessResponse>(`${this.appUrl}courses/register/${courseId}`, {});
+    const authInfo= this.store.selectSignal(selectUserId);
+    const userId = authInfo();
+    return this.http.post<SuccessResponse>(`${this.appUrl}courses/register/${courseId}`, {userId});
   }
 
   public deleteCourse(id: string) {
