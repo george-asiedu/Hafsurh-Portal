@@ -30,10 +30,10 @@ export const signinRouteEffects = createEffect(
     return actions$.pipe(
       ofType(authActions.signinSuccess),
       tap((response) => {
-        if(response.data.data.user.role == Roles.Admin) {
+        if(response.data.data.user.role === Roles.Admin) {
           route.navigateByUrl('/admin-dashboard')
         }
-        else if (response.data.data.user.role == Roles.Student) {
+        else if (response.data.data.user.role === Roles.Student) {
           route.navigateByUrl('/student-dashboard')
         }
       })

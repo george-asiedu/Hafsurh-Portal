@@ -10,10 +10,9 @@ export const showSpinnerEffects = createEffect(
     return actions$.pipe(
       ofType(
         authActions.registerAccount, authActions.signin,
-        authActions.verifyAccount, adminActions.updateUserBio,
-        adminActions.getUserProfile, adminActions.getAllUsers,
-        adminActions.addCourse, adminActions.deleteCourse,
-        adminActions.registerCourse, adminActions.updateCourse
+        authActions.verifyAccount, adminActions.getUserProfile,
+        adminActions.getAllUsers, adminActions.addCourse,
+        adminActions.deleteCourse, adminActions.updateCourse
       ),
       tap(() => spinner.show())
     );
@@ -28,9 +27,8 @@ export const hideSpinnerEffects = createEffect(
         authActions.registerAccountSuccess, authActions.signinSuccess,
         authActions.authenticationFailure, authActions.verifyAccountSuccess,
         adminActions.getUserProfileSuccess, adminActions.getAllUsersSuccess,
-        adminActions.updateUserBioSuccess, adminActions.updateCourseSuccess,
-        adminActions.deleteCourseSuccess, adminActions.getAllCoursesSuccess,
-        adminActions.courseRegistrationSuccess, adminActions.updateCourseSuccess,
+        adminActions.updateCourseSuccess, adminActions.deleteCourseSuccess,
+        adminActions.getAllCoursesSuccess, adminActions.updateCourseSuccess,
         adminActions.userFailure, adminActions.courseFailure
       ),
       tap(() => spinner.hide())

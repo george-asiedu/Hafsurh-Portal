@@ -60,8 +60,7 @@ export const appSuccessToastEffects = createEffect(
     return actions$.pipe(
       ofType(
         authActions.verifyAccountSuccess,
-        adminActions.deleteCourseSuccess,
-        adminActions.courseRegistrationSuccess
+        adminActions.deleteCourseSuccess
       ),
       tap((message) =>
         toast.success(
@@ -99,7 +98,6 @@ export const usersSuccessToastEffects = createEffect(
       ofType(
         adminActions.getUserProfileSuccess,
         adminActions.getAllUsersSuccess,
-        adminActions.updateUserBioSuccess
       ),
       tap((response) =>
         toast.success(
