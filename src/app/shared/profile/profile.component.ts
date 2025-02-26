@@ -14,7 +14,6 @@ export class ProfileComponent implements OnInit {
   private store = inject(Store);
   public profile = this.store.selectSignal(selectUserProfile);
   public isLoading = this.store.selectSignal(selectLoading);
-  public isModalVisible: boolean = false;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -23,17 +22,5 @@ export class ProfileComponent implements OnInit {
     if (id) {
       this.store.dispatch(adminActions.getUserProfile({id}));
     }
-  }
-
-  showModal() {
-    this.isModalVisible = true;
-  }
-
-  cancelModal() {
-    this.isModalVisible = false;
-  }
-
-  confirmData() {
-    this.isModalVisible = false;
   }
 }
