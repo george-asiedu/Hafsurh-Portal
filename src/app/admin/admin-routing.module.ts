@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    title: 'Lasued Admin Portal | Admin Dashboard',
+    title: 'Hafsurh\'s Portal | Admin Dashboard',
     children: [
       {path: '', component: DashboardComponent},
       {path: 'courses', component: CoursesComponent}
